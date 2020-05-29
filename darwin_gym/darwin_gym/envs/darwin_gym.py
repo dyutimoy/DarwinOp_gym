@@ -327,7 +327,7 @@ class XmlBasedRobot:
     self.ordered_joints = None
     self.robot_body = None
 
-    high = np.ones([action_dim]) * 0.1
+    high = np.ones([action_dim]) * 0.4
     self.action_space = gym.spaces.Box(-high, high)
     high = np.inf * np.ones([obs_dim])
     self.observation_space = gym.spaces.Box(-high, high)
@@ -489,6 +489,7 @@ class BodyPart:
     self._p = bullet_client
     self.bodyIndex = bodyIndex
     self.bodyPartIndex = bodyPartIndex
+    self.body_name=body_name
     self.initialPosition = self.current_position()
     self.initialOrientation = self.current_orientation()
     self.bp_pose = Pose_Helper(self)
@@ -777,7 +778,7 @@ class Humanoid(WalkerBase):
       
 
     
-      m.set_position(np.clip(m.get_position()+np.clip(a[i], -.1, +.1),m.lowerLimit,m.upperLimit))#np.clip(m.get_position(),m.lowerLimit,m.upperLimit))  
+      m.set_position(np.clip(m.get_position()+np.clip(a[i], -.4, +.4),m.lowerLimit,m.upperLimit))#np.clip(m.get_position(),m.lowerLimit,m.upperLimit))  
       debug_torque=0
       if debug_torque:
         print(np.clip(m.get_position()+np.clip(a[i], -.1, +.1),m.lowerLimit,m.upperLimit)) 
@@ -884,26 +885,32 @@ class WalkerBaseBulletEnv(URDFBulletEnv):
     progress = float(self.potential - potential_old)
 
     feet_collision_cost = 0.0
-    """
+    
     for i, f in enumerate(
         self.robot.feet
     ):  # TODO: Maybe calculating feet contacts could be done within the robot code
       contact_ids = set((x[2], x[4]) for x in f.contact_list())
-      print(contact_ids)
+      #print(contact_ids)
+      #print(f.body_name)
+      #print("i",i)
+        
+      #print("contacts:", contact_ids)
+      #for x in f.contact_list():
+      #  print(x)
       #print("CONTACT OF '%d' WITH %d" % (contact_ids, ",".join(contact_names)) )
-      if (self.ground_ids & contact_ids):
+      if (contact_ids):
         #see Issue 63: https://github.com/openai/roboschool/issues/63
         #feet_collision_cost += self.foot_collision_cost
         self.robot.feet_contact[i] = 1.0
       else:
         self.robot.feet_contact[i] = 0.0
-    """
+    #print("feet",self.robot.feet_contact)
     electricity_cost = self.electricity_cost * float(np.abs(a * self.robot.joint_speeds).mean(
     ))  # let's assume we have DC motor with controller, and reverse current braking
     electricity_cost += self.stall_torque_cost * float(np.square(a).mean())
 
     joints_at_limit_cost = float(self.joints_at_limit_cost * self.robot.joints_at_limit)
-    debugmode = 1
+    debugmode = 0
     if (debugmode):
       print("alive=")
       print(self._alive)
