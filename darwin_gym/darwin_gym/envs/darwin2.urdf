@@ -24,7 +24,7 @@
     </visual>
     <collision>
       <geometry>
-        <mesh filename="/content/DarwinOp_gym/darwin_gym/darwin_gym/envs//content/DarwinOp_gym/darwin_gym/darwin_gym/envs/meshes/body_coll.stl"  scale="1 1 1"/>
+        <mesh filename="/content/DarwinOp_gym/darwin_gym/darwin_gym/envs/meshes/body_coll.stl"  scale="1 1 1"/>
       </geometry>
     </collision>
   </link>
@@ -39,7 +39,7 @@
       <origin xyz="0 0 0" rpy="0 0 0" />
       <geometry>
         <!--box size="0.045 0.022 0.0325" /-->
-        <mesh filename="/content/DarwinOp_gym/darwin_gym/darwin_gym/envs//content/DarwinOp_gym/darwin_gym/darwin_gym/envs/meshes/neck.STL"  scale="1 1 1"/>
+        <mesh filename="/content/DarwinOp_gym/darwin_gym/darwin_gym/envs/meshes/neck.STL"  scale="1 1 1"/>
       </geometry>
       <material name="Grey">
         <color rgba="0.20 0.20 0.20 1.0"/>

@@ -943,13 +943,12 @@ class WalkerBaseBulletEnv(URDFBulletEnv):
     self.camera.move_and_look_at(self.camera_x, y , 0.1, x, y,0.1)
 
 class DarwinBulletEnv(WalkerBaseBulletEnv):
-
+  
   def __init__(self, robot=Humanoid(), render=True):
     self.robot = robot
     WalkerBaseBulletEnv.__init__(self, self.robot, render)
     self.electricity_cost = 4.25 * WalkerBaseBulletEnv.electricity_cost
     self.stall_torque_cost = 4.25 * WalkerBaseBulletEnv.stall_torque_cost
-
 
 
 
