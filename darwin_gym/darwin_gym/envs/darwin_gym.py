@@ -944,7 +944,7 @@ class WalkerBaseBulletEnv(URDFBulletEnv):
 
 class DarwinBulletEnv(WalkerBaseBulletEnv):
   
-  def __init__(self, robot=Humanoid(), render=True):
+  def __init__(self, robot=Humanoid(), render=False):
     self.robot = robot
     WalkerBaseBulletEnv.__init__(self, self.robot, render)
     self.electricity_cost = 4.25 * WalkerBaseBulletEnv.electricity_cost
