@@ -726,7 +726,7 @@ class Humanoid(WalkerBase):
 
   def __init__(self):
     WalkerBase.__init__(self,
-                        "darwin_gym/darwin_gym/envs/darwin2.urdf",
+                        "/content/DarwinOp_gym/darwin_gym/darwin_gym/envs/darwin2.urdf",
                         'MP_BODY',
                         action_dim=18,
                         obs_dim=46,
