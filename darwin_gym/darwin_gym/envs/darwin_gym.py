@@ -434,28 +434,31 @@ class URDFBasedRobot(XmlBasedRobot):
     self.basePosition = basePosition
     self.baseOrientation = baseOrientation
     self.fixed_base = fixed_base
+    self.doneLoading=0
 
   def reset(self, bullet_client):
     self._p = bullet_client
-    self.ordered_joints = []
+    
 
     #print(os.path.join(os.path.dirname(__file__), "data", self.model_urdf))
-
-    if self.self_collision:
-      self.parts, self.jdict, self.ordered_joints, self.robot_body = self.addToScene(
-          self._p,
-          self._p.loadURDF(self.model_urdf,
-                           basePosition=self.basePosition,
-                           baseOrientation=self.baseOrientation,
-                           useFixedBase=self.fixed_base,
-                           flags=pybullet.URDF_USE_SELF_COLLISION+pybullet.URDF_INITIALIZE_SAT_FEATURES+pybullet.URDF_USE_INERTIA_FROM_FILE)) 
-    else:
-      self.parts, self.jdict, self.ordered_joints, self.robot_body = self.addToScene(
-          self._p,
-          self._p.loadURDF( self.model_urdf,
-                           basePosition=self.basePosition,
-                           baseOrientation=self.baseOrientation,
-                           useFixedBase=self.fixed_base))
+    if (self.doneLoading == 0):
+      self.ordered_joints = []
+      self.doneLoading=1
+      if self.self_collision:
+        self.parts, self.jdict, self.ordered_joints, self.robot_body = self.addToScene(
+            self._p,
+            self._p.loadURDF(self.model_urdf,
+                            basePosition=self.basePosition,
+                            baseOrientation=self.baseOrientation,
+                            useFixedBase=self.fixed_base,
+                            flags=pybullet.URDF_USE_SELF_COLLISION+pybullet.URDF_INITIALIZE_SAT_FEATURES+pybullet.URDF_USE_INERTIA_FROM_FILE)) 
+      else:
+        self.parts, self.jdict, self.ordered_joints, self.robot_body = self.addToScene(
+            self._p,
+            self._p.loadURDF( self.model_urdf,
+                            basePosition=self.basePosition,
+                            baseOrientation=self.baseOrientation,
+                            useFixedBase=self.fixed_base))
 
     self.robot_specific_reset(self._p)
 
