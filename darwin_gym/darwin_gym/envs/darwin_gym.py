@@ -327,7 +327,7 @@ class XmlBasedRobot:
     self.ordered_joints = None
     self.robot_body = None
 
-    high = np.ones([action_dim]) * 0.4
+    high = np.ones([action_dim]) * 0.1
     self.action_space = gym.spaces.Box(-high, high)
     high = np.inf * np.ones([obs_dim])
     self.observation_space = gym.spaces.Box(-high, high)
@@ -366,10 +366,16 @@ class XmlBasedRobot:
         parts[part_name] = BodyPart(self._p, part_name, bodies, i, -1)
         #print("khdfkjsahi",part_name)
       for j in range(self._p.getNumJoints(bodies[i])):
+        jointInfo = self._p.getJointInfo(bodies[i], j)
+        MaxForce=jointInfo[10]/3.0
+        MaxVelocity=jointInfo[11]/3.0
         self._p.setJointMotorControl2(bodies[i],
                                       j,
-                                      pybullet.POSITION_CONTROL)
-        jointInfo = self._p.getJointInfo(bodies[i], j)
+                                      pybullet.POSITION_CONTROL,
+                                      targetPosition=0,
+                                      force=MaxForce,
+                                      maxVelocity=MaxVelocity)
+        
         joint_name = jointInfo[1]
         part_name = jointInfo[12]
 
@@ -561,8 +567,8 @@ class Joint:
     jointInfo = self._p.getJointInfo(self.bodies[self.bodyIndex], self.jointIndex)
     self.lowerLimit = jointInfo[8]
     self.upperLimit = jointInfo[9]
-    self.MaxForce=jointInfo[10]
-    self.MaxVelocity=jointInfo[11]
+    self.MaxForce=jointInfo[10]/3.0
+    self.MaxVelocity=jointInfo[11]/3.0
     self.power_coeff = 0
 
   def set_state(self, x, vx):
@@ -599,7 +605,9 @@ class Joint:
     self._p.setJointMotorControl2(self.bodies[self.bodyIndex],
                                   self.jointIndex,
                                   pybullet.POSITION_CONTROL,
-                                  targetPosition=position)
+                                  targetPosition=position,
+                                  force=self.MaxForce,
+                                  maxVelocity=self.MaxVelocity)
 
   def set_velocity(self, velocity):
     self._p.setJointMotorControl2(self.bodies[self.bodyIndex],
@@ -781,7 +789,7 @@ class Humanoid(WalkerBase):
       
 
     
-      m.set_position(np.clip(m.get_position()+np.clip(a[i], -.4, +.4),m.lowerLimit,m.upperLimit))#np.clip(m.get_position(),m.lowerLimit,m.upperLimit))  
+      m.set_position(np.clip(m.get_position()+np.clip(a[i], -.1, +.1),m.lowerLimit,m.upperLimit))#np.clip(m.get_position(),m.lowerLimit,m.upperLimit))  
       debug_torque=0
       if debug_torque:
         print(np.clip(m.get_position()+np.clip(a[i], -.1, +.1),m.lowerLimit,m.upperLimit)) 
