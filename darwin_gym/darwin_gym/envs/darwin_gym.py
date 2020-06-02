@@ -33,10 +33,10 @@ class URDFBulletEnv(gym.Env):
     self.robot = robot
     self.seed()
     self._cam_dist = 1
-    self._cam_yaw = 90
-    self._cam_pitch = -10
-    self._render_width = 640
-    self._render_height = 480
+    self._cam_yaw = 0
+    self._cam_pitch = -30
+    self._render_width = 320
+    self._render_height = 240
 
     self.action_space = robot.action_space
     self.observation_space = robot.observation_space
@@ -239,14 +239,14 @@ class World:
     self.gravity = gravity
     self.timestep = timestep
     self.frame_skip = frame_skip
-    self.numSolverIterations = 50
+    self.numSolverIterations = 5
     self.clean_everything()
 
   def clean_everything(self):
     #p.resetSimulation()
     self._p.setGravity(0, 0, -self.gravity)
 
-    self._p.setRealTimeSimulation(1)
+    #self._p.setRealTimeSimulation(1)
     self._p.setDefaultContactERP(0.9)
     #print("self.numSolverIterations=",self.numSolverIterations)
     self._p.setPhysicsEngineParameter(fixedTimeStep=self.timestep * self.frame_skip,
@@ -327,7 +327,7 @@ class XmlBasedRobot:
     self.ordered_joints = None
     self.robot_body = None
 
-    high = np.ones([action_dim]) * 0.1
+    high = np.ones([action_dim]) * 0.067
     self.action_space = gym.spaces.Box(-high, high)
     high = np.inf * np.ones([obs_dim])
     self.observation_space = gym.spaces.Box(-high, high)
@@ -739,21 +739,21 @@ class Humanoid(WalkerBase):
     WalkerBase.__init__(self,
                         "/content/DarwinOp_gym/darwin_gym/darwin_gym/envs/darwin2.urdf",
                         'MP_BODY',
-                        action_dim=18,
-                        obs_dim=46,
+                        action_dim=14,
+                        obs_dim=38,
                         power=0.00)
     # 17 joints, 4 of them important for walking (hip, knee), others may as well be turned off, 17/4 = 4.25
 
   def robot_specific_reset(self, bullet_client):
     WalkerBase.robot_specific_reset(self, bullet_client)
-    self.motor_names =["j_pelvis_r", "j_thigh1_r", "j_thigh2_r", "j_tibia_r","j_ankle1_r","j_ankle2_r"]
-    self.motor_power = [100, 100, 100, 100,100]
-    self.motor_names += ["j_pelvis_l", "j_thigh1_l", "j_thigh2_l", "j_tibia_l","j_ankle1_l","j_ankle2_l"]
-    self.motor_power += [100, 100, 100, 100, 100, 100]
+    self.motor_names =["j_pelvis_r", "j_thigh1_r", "j_thigh2_r", "j_tibia_r"]#,"j_ankle1_r","j_ankle2_r"]
+    self.motor_power = [100, 100, 100]#, 100,100]
+    self.motor_names += ["j_pelvis_l", "j_thigh1_l", "j_thigh2_l", "j_tibia_l"]#,"j_ankle1_l","j_ankle2_l"]
+    self.motor_power += [100, 100, 100]#, 100, 100, 100]
     self.motor_names += ["j_shoulder_r", "j_high_arm_r", "j_low_arm_r"]
-    self.motor_power += [100, 100, 100]
+    self.motor_power += [28, 28, 28]
     self.motor_names += ["j_shoulder_l", "j_high_arm_l", "j_low_arm_l"]
-    self.motor_power += [100, 100, 100]
+    self.motor_power += [28, 28, 28]
     self.motors = [self.jdict[n] for n in self.motor_names]
     """
     if self.random_yaw:
@@ -784,12 +784,12 @@ class Humanoid(WalkerBase):
   def apply_action(self, a):
     assert (np.isfinite(a).all())
     force_gain = 1
-    for i, m, power in zip(range(18), self.motors, self.motor_power):
+    for i, m, power in zip(range(14), self.motors, self.motor_power):
       #m.set_motor_torque(float(force_gain * power * self.power * np.clip(a[i], -.1, +.1)))
       
 
     
-      m.set_motor_torque(np.clip(a[i], -.1, +.1))#np.clip(m.get_position(),m.lowerLimit,m.upperLimit))  
+      m.set_motor_torque((0.1*power *np.clip(a[i], -.1, +.1))#np.clip(m.get_position(),m.lowerLimit,m.upperLimit))  
       debug_torque=0
       if debug_torque:
         print(np.clip(m.get_position()+np.clip(a[i], -.1, +.1),m.lowerLimit,m.upperLimit)) 
