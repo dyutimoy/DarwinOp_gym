@@ -367,14 +367,14 @@ class XmlBasedRobot:
         #print("khdfkjsahi",part_name)
       for j in range(self._p.getNumJoints(bodies[i])):
         jointInfo = self._p.getJointInfo(bodies[i], j)
-        MaxForce=jointInfo[10]/3.0
-        MaxVelocity=jointInfo[11]/3.0
+        MaxForce=jointInfo[10]/150.0
+        MaxVelocity=jointInfo[11]/100.0
         self._p.setJointMotorControl2(bodies[i],
                                       j,
                                       pybullet.POSITION_CONTROL,
-                                      targetPosition=0,
-                                      force=MaxForce,
-                                      maxVelocity=MaxVelocity)
+                                      positionGain=0.1,
+                                      velocityGain=0.1,
+                                      force=0)
         
         joint_name = jointInfo[1]
         part_name = jointInfo[12]
@@ -567,8 +567,8 @@ class Joint:
     jointInfo = self._p.getJointInfo(self.bodies[self.bodyIndex], self.jointIndex)
     self.lowerLimit = jointInfo[8]
     self.upperLimit = jointInfo[9]
-    self.MaxForce=jointInfo[10]/3.0
-    self.MaxVelocity=jointInfo[11]/3.0
+    self.MaxForce=jointInfo[10]/150.0
+    self.MaxVelocity=jointInfo[11]/100.0
     self.power_coeff = 0
 
   def set_state(self, x, vx):
@@ -644,7 +644,7 @@ class Joint:
                                   targetVelocity=0,
                                   positionGain=0.1,
                                   velocityGain=0.1,
-                                  force=100)
+                                  force=0)
 
 class WalkerBase(URDFBasedRobot):
 
@@ -789,7 +789,7 @@ class Humanoid(WalkerBase):
       
 
     
-      m.set_position(np.clip(m.get_position()+np.clip(a[i], -.1, +.1),m.lowerLimit,m.upperLimit))#np.clip(m.get_position(),m.lowerLimit,m.upperLimit))  
+      m.set_motor_torque(np.clip(a[i], -.1, +.1))#np.clip(m.get_position(),m.lowerLimit,m.upperLimit))  
       debug_torque=0
       if debug_torque:
         print(np.clip(m.get_position()+np.clip(a[i], -.1, +.1),m.lowerLimit,m.upperLimit)) 
