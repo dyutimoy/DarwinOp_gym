@@ -916,9 +916,9 @@ class WalkerBaseBulletEnv(URDFBulletEnv):
       else:
         self.robot.feet_contact[i] = 0.0
     #print("feet",self.robot.feet_contact)
-    electricity_cost = 3*self.electricity_cost * float(np.abs(a * self.robot.joint_speeds).mean(
+    electricity_cost = 2*self.electricity_cost * float(np.abs(a * self.robot.joint_speeds).mean(
     ))  # let's assume we have DC motor with controller, and reverse current braking
-    electricity_cost += 3*self.stall_torque_cost * float(np.square(a).mean())
+    electricity_cost += 2*self.stall_torque_cost * float(np.square(a).mean())
 
     joints_at_limit_cost = float(self.joints_at_limit_cost * self.robot.joints_at_limit)
     debugmode = 0
