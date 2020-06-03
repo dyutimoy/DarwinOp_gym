@@ -367,8 +367,8 @@ class XmlBasedRobot:
         #print("khdfkjsahi",part_name)
       for j in range(self._p.getNumJoints(bodies[i])):
         jointInfo = self._p.getJointInfo(bodies[i], j)
-        MaxForce=jointInfo[10]/150.0
-        MaxVelocity=jointInfo[11]/100.0
+        MaxForce=jointInfo[10]#/150.0
+        MaxVelocity=jointInfo[11]#/100.0
         self._p.setJointMotorControl2(bodies[i],
                                       j,
                                       pybullet.POSITION_CONTROL,
@@ -737,7 +737,7 @@ class Humanoid(WalkerBase):
 
   def __init__(self):
     WalkerBase.__init__(self,
-                        "/content/DarwinOp_gym/darwin_gym/darwin_gym/envs/darwin2.urdf",
+                        "/content/DarwinOp_gym/darwin_gym/darwin_gym/envs/darwin3.urdf",
                         'MP_BODY',
                         action_dim=14,
                         obs_dim=38,
@@ -789,7 +789,7 @@ class Humanoid(WalkerBase):
       
 
     
-      m.set_motor_torque(0.1*power *np.clip(a[i], -.1, +.1))#np.clip(m.get_position(),m.lowerLimit,m.upperLimit))  
+      m.set_position(np.clip(m.get_position()+a[i],m.lowerLimit,m.upperLimit))#np.clip(m.get_position(),m.lowerLimit,m.upperLimit))  
       debug_torque=0
       if debug_torque:
         print(np.clip(m.get_position()+np.clip(a[i], -.1, +.1),m.lowerLimit,m.upperLimit)) 
