@@ -33,7 +33,7 @@ class URDFBulletEnv(gym.Env):
     self.robot = robot
     self.seed()
     self._cam_dist = 1
-    self._cam_yaw = 0
+    self._cam_yaw = 10
     self._cam_pitch = -30
     self._render_width = 320
     self._render_height = 240
@@ -789,7 +789,7 @@ class Humanoid(WalkerBase):
       
 
     
-      m.set_motor_torque((0.1*power *np.clip(a[i], -.1, +.1))#np.clip(m.get_position(),m.lowerLimit,m.upperLimit))  
+      m.set_motor_torque(0.1*power *np.clip(a[i], -.1, +.1))#np.clip(m.get_position(),m.lowerLimit,m.upperLimit))  
       debug_torque=0
       if debug_torque:
         print(np.clip(m.get_position()+np.clip(a[i], -.1, +.1),m.lowerLimit,m.upperLimit)) 
@@ -799,7 +799,7 @@ class Humanoid(WalkerBase):
         print("position",m.get_position())
 
   def alive_bonus(self, z, pitch):
-    return +2 if z > 0.2 else -1  # 2 here because 17 joints produce a lot of electricity cost just from policy noise, living must be better than dying
+    return +3 if z > 0.27 else -1  # 2 here because 17 joints produce a lot of electricity cost just from policy noise, living must be better than dying
 
 
 def get_cube(_p, x, y, z):
@@ -893,7 +893,7 @@ class WalkerBaseBulletEnv(URDFBulletEnv):
 
     potential_old = self.potential
     self.potential = self.robot.calc_potential()
-    progress = float(self.potential - potential_old)
+    progress = 0*float(self.potential - potential_old)
 
     feet_collision_cost = 0.0
     
@@ -916,9 +916,9 @@ class WalkerBaseBulletEnv(URDFBulletEnv):
       else:
         self.robot.feet_contact[i] = 0.0
     #print("feet",self.robot.feet_contact)
-    electricity_cost = self.electricity_cost * float(np.abs(a * self.robot.joint_speeds).mean(
+    electricity_cost = 3*self.electricity_cost * float(np.abs(a * self.robot.joint_speeds).mean(
     ))  # let's assume we have DC motor with controller, and reverse current braking
-    electricity_cost += self.stall_torque_cost * float(np.square(a).mean())
+    electricity_cost += 3*self.stall_torque_cost * float(np.square(a).mean())
 
     joints_at_limit_cost = float(self.joints_at_limit_cost * self.robot.joints_at_limit)
     debugmode = 0
