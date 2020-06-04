@@ -733,7 +733,7 @@ class WalkerBase(URDFBasedRobot):
 
 class Humanoid(WalkerBase):
   self_collision = True
-  foot_list = ["MP_ANKLE2_R", "MP_ANKLE2_L"]  # "left_hand", "right_hand"
+  foot_list = ["MP_ANKLE2_L", "MP_ANKLE2_R"]  # "left_hand", "right_hand"
 
   def __init__(self):
     WalkerBase.__init__(self,
@@ -746,14 +746,14 @@ class Humanoid(WalkerBase):
 
   def robot_specific_reset(self, bullet_client):
     WalkerBase.robot_specific_reset(self, bullet_client)
-    self.motor_names =["j_pelvis_r", "j_thigh1_r", "j_thigh2_r", "j_tibia_r"]#,"j_ankle1_r","j_ankle2_r"]
-    self.motor_power = [100, 100, 100]#, 100,100]
-    self.motor_names += ["j_pelvis_l", "j_thigh1_l", "j_thigh2_l", "j_tibia_l"]#,"j_ankle1_l","j_ankle2_l"]
-    self.motor_power += [100, 100, 100]#, 100, 100, 100]
+    self.motor_names = ["j_shoulder_l", "j_high_arm_l", "j_low_arm_l"]
+    self.motor_power = [100, 100, 100]
     self.motor_names += ["j_shoulder_r", "j_high_arm_r", "j_low_arm_r"]
-    self.motor_power += [28, 28, 28]
-    self.motor_names += ["j_shoulder_l", "j_high_arm_l", "j_low_arm_l"]
-    self.motor_power += [28, 28, 28]
+    self.motor_power += [100, 100, 100]
+    self.motor_names += ["j_pelvis_l", "j_thigh1_l", "j_thigh2_l", "j_tibia_l"]#,"j_ankle1_l","j_ankle2_l"]
+    self.motor_power += [100, 100, 100, 100]#, 100, 100]
+    self.motor_names +=["j_pelvis_r", "j_thigh1_r", "j_thigh2_r", "j_tibia_r"]#,"j_ankle1_r","j_ankle2_r"]
+    self.motor_power += [100, 100, 100,100]#, 100,100]
     self.motors = [self.jdict[n] for n in self.motor_names]
     """
     if self.random_yaw:
@@ -791,15 +791,29 @@ class Humanoid(WalkerBase):
     
       m.set_position(np.clip(m.get_position()+a[i],m.lowerLimit,m.upperLimit))#np.clip(m.get_position(),m.lowerLimit,m.upperLimit))  
       debug_torque=0
-      if debug_torque:
+      if debug_torque and i==1:
+        print("******************")
+        
         print(np.clip(m.get_position()+np.clip(a[i], -.1, +.1),m.lowerLimit,m.upperLimit)) 
         print("force", m.joint_name," :",m.get_torque() )
         
-        print("velocity")
-        print("position",m.get_position())
+        print("velocity", m.get_velocity())
+        print(np.clip(a[i], -.1, +.1),"position",m.get_position())
 
   def alive_bonus(self, z, pitch):
-    return +3 if z > 0.27 else -1  # 2 here because 17 joints produce a lot of electricity cost just from policy noise, living must be better than dying
+
+    
+    if z > 0.3:
+      #print("WOW")
+      return 5
+    if z < 0.15:
+      #print("dead")
+      return -1
+    else:
+      #print("fuck")
+      return 1
+       
+    #return +3 if z > 0.27 else -1  # 2 here because 17 joints produce a lot of electricity cost just from policy noise, living must be better than dying
 
 
 def get_cube(_p, x, y, z):
