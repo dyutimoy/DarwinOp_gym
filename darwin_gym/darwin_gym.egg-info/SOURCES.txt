@@ -9,6 +9,7 @@ darwin_gym/envs/__init__.py
 darwin_gym/envs/darwin.urdf
 darwin_gym/envs/darwin2.urdf
 darwin_gym/envs/darwin3.urdf
+darwin_gym/envs/darwin4.urdf
 darwin_gym/envs/darwin_gym.py
 darwin_gym/envs/__pycache__/__init__.cpython-36.pyc
 darwin_gym/envs/__pycache__/darwin_gym.cpython-36.pyc

@@ -248,7 +248,7 @@ class World:
 
     #self._p.setRealTimeSimulation(1)
     self._p.setDefaultContactERP(0.9)
-    print("self.numSolverIterations=",self.numSolverIterations)
+    #print("self.numSolverIterations=",self.numSolverIterations)
     self._p.setPhysicsEngineParameter(fixedTimeStep=self.timestep * self.frame_skip,
                                       numSolverIterations=self.numSolverIterations,
                                       numSubSteps=self.frame_skip)
@@ -449,7 +449,7 @@ class URDFBasedRobot(XmlBasedRobot):
     if (self.doneLoading == 0):
       self.ordered_joints = []
       self.doneLoading=1
-      get_cube(self._p,12,0,0)
+      #get_cube(self._p,12,0,0)
       if self.self_collision:
         self.parts, self.jdict, self.ordered_joints, self.robot_body = self.addToScene(
             self._p,
@@ -568,7 +568,7 @@ class Joint:
     self.upperLimit = jointInfo[9]
     self.MaxForce=jointInfo[10]*3#/15.0
     self.MaxVelocity=jointInfo[11]#/10.0
-    print("joint ",self.joint_name,"vel ",self.MaxVelocity, self.MaxForce )
+    #print("joint ",self.joint_name,"vel ",self.MaxVelocity, self.MaxForce )
     self.power_coeff = 0
 
   def set_state(self, x, vx):
@@ -675,7 +675,7 @@ class WalkerBase(URDFBasedRobot):
 
   def robot_specific_reset(self, bullet_client):
     self._p = bullet_client
-    get_cube(self._p,2,0,0)
+    #get_cube(self._p,2,0,0)
     for j in self.ordered_joints:
       j.reset_current_position(0,0)#self.np_random.uniform(low=-0.001, high=0.001), 0)
 
@@ -685,7 +685,7 @@ class WalkerBase(URDFBasedRobot):
     self.initial_z = None
 
   def apply_action(self, a):
-    print("ssssssssssssss")
+    #print("ssssssssssssss")
     assert (np.isfinite(a).all())
     for n, j in enumerate(self.ordered_joints):
       j.set_motor_torque(self.power * j.power_coef * float(np.clip(a[n], -1, +1)))
@@ -695,8 +695,8 @@ class WalkerBase(URDFBasedRobot):
                  dtype=np.float32).flatten()
     # even elements [0::2] position, scaled to -1..+1 between limits
     # odd elements  [1::2] angular speed, scaled to show -1..+1
-    for i in self.ordered_joints:
-      print(" a",i.joint_name," ",i.jointIndex)
+    #for i in self.ordered_joints:
+    #  print(" a",i.joint_name," ",i.jointIndex)
 
     self.joint_speeds = j[1::2]
     #print(self.joint_speeds)
@@ -761,8 +761,8 @@ class Humanoid(WalkerBase):
                         "/content/DarwinOp_gym/darwin_gym/darwin_gym/envs/darwin4.urdf",
                         'MP_BODY',
                         action_dim=14,
-                        obs_dim=46,
-                        power=0.00)
+                        obs_dim=38,
+                        power=0.02)
     # 17 joints, 4 of them important for walking (hip, knee), others may as well be turned off, 17/4 = 4.25
 
   def robot_specific_reset(self, bullet_client):
@@ -810,28 +810,22 @@ class Humanoid(WalkerBase):
     #val=a*0+0.1
     for i, m, power in zip(range(14), self.motors, self.motor_power):
       #m.set_motor_torque(float(force_gain * power * self.power * np.clip(a[i], -.1, +.1)))
-      
+      debug_torque=0
+      if debug_torque and i==13:
+        print("position_intial",m.get_position())
 
     
-      m.set_position(np.clip(m.get_position()+a[i],m.lowerLimit,m.upperLimit)) #np.clip(a[i], -.01, +.01))#np.clip(m.get_position(),m.lowerLimit,m.upperLimit))  
-      debug_torque=0
-      if debug_torque and abs(m.get_position()-(m.lowerLimit+m.upperLimit)/2.0)>0.1:
+      m.set_position(np.clip(m.get_position()+self.power*np.clip(a[i], -1, +1),m.lowerLimit,m.upperLimit)) #np.clip(a[i], -.01, +.01))#np.clip(m.get_position(),m.lowerLimit,m.upperLimit))  
+      
+      if debug_torque and abs(m.get_position()-(np.clip(m.get_position()+np.clip(a[i], -.01, +.01),m.lowerLimit,m.upperLimit)))>0.001 and i==13:
         print("****888*******888888888888888888888888*************")
-        print("forced", m.joint_name," :",m.get_torque() ,np.clip(a[i], -.01, +.01))
-        print(a[i]," input ") 
+        print("forced", m.joint_name," :",m.get_torque(),self.power*np.clip(a[i], -1, +1))
+        #print(a[i]," input ") 
         
         
         print("velocity",m.get_orientation())
-        print("position",m.get_position(),(m.lowerLimit+m.upperLimit)/2.0)
-      if   debug_torque:
-        
-        print("***************")
-        print("forced", m.joint_name," :",m.get_torque() ,np.clip(a[i], -.01, +.01))
-        print(a[i]," input ") 
-        
-        
-        print("velocity",m.get_orientation())
-        print("position",m.get_position(),(m.lowerLimit+m.upperLimit)/2.0)
+        print("position",m.get_position(),np.clip(m.get_position()+self.power*np.clip(a[i], -1, +1),m.lowerLimit,m.upperLimit))
+      
 
   def alive_bonus(self, z, pitch):
     return +2 if z > 0.2 else -1  # 2 here because 17 joints produce a lot of electricity cost just from policy noise, living must be better than dying
@@ -929,7 +923,7 @@ class WalkerBaseBulletEnv(URDFBulletEnv):
 
     potential_old = self.potential
     self.potential = self.robot.calc_potential()
-    progress = float(self.potential - potential_old)
+    progress = 10*float(self.potential - potential_old)
 
     feet_collision_cost = 0.0
     
@@ -951,8 +945,8 @@ class WalkerBaseBulletEnv(URDFBulletEnv):
         self.robot.feet_contact[i] = 1.0
       else:
         self.robot.feet_contact[i] = 0.0
-    print("speed",self.robot.joint_speeds)
-    print("postion",a)
+    #print("speed",self.robot.joint_speeds)
+    #print("postion",a)
     electricity_cost = self.electricity_cost * float(np.abs(a * self.robot.joint_speeds).mean(
     ))  # let's assume we have DC motor with controller, and reverse current braking
     electricity_cost += self.stall_torque_cost * float(np.square(a).mean())
@@ -963,7 +957,7 @@ class WalkerBaseBulletEnv(URDFBulletEnv):
       print("alive=")
       print(self._alive)
       print("progress")
-      print(progress)
+      print(progress , potential_old)
       print("electricity_cost")
       print(electricity_cost)
       print("joints_at_limit_cost")
