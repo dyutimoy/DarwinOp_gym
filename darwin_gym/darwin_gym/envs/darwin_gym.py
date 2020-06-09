@@ -762,7 +762,7 @@ class Humanoid(WalkerBase):
                         'MP_BODY',
                         action_dim=14,
                         obs_dim=38,
-                        power=0.02)
+                        power=0.06)
     # 17 joints, 4 of them important for walking (hip, knee), others may as well be turned off, 17/4 = 4.25
 
   def robot_specific_reset(self, bullet_client):
@@ -828,7 +828,7 @@ class Humanoid(WalkerBase):
       
 
   def alive_bonus(self, z, pitch):
-    return +2 if z > 0.2 else -1  # 2 here because 17 joints produce a lot of electricity cost just from policy noise, living must be better than dying
+    return +4 if z > 0.2 else -1  # 2 here because 17 joints produce a lot of electricity cost just from policy noise, living must be better than dying
 
 
 def get_cube(_p, x, y, z):
@@ -923,7 +923,7 @@ class WalkerBaseBulletEnv(URDFBulletEnv):
 
     potential_old = self.potential
     self.potential = self.robot.calc_potential()
-    progress = 10*float(self.potential - potential_old)
+    progress = 25*float(self.potential - potential_old)
 
     feet_collision_cost = 0.0
     
@@ -957,7 +957,7 @@ class WalkerBaseBulletEnv(URDFBulletEnv):
       print("alive=")
       print(self._alive)
       print("progress")
-      print(progress , potential_old)
+      print(progress , potential_old,self.potential)
       print("electricity_cost")
       print(electricity_cost)
       print("joints_at_limit_cost")
