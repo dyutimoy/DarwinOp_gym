@@ -760,8 +760,8 @@ class Humanoid(WalkerBase):
     WalkerBase.__init__(self,
                         "/content/DarwinOp_gym/darwin_gym/darwin_gym/envs/darwin4.urdf",
                         'MP_BODY',
-                        action_dim=14,
-                        obs_dim=38,
+                        action_dim=18,
+                        obs_dim=46,
                         power=0.06)
     # 17 joints, 4 of them important for walking (hip, knee), others may as well be turned off, 17/4 = 4.25
 

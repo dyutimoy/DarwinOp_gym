@@ -911,7 +911,7 @@
     <limit effort="10" velocity="5.6548668" lower="-1.8879939" upper="0.06179939" />
   </joint>
 
-  <joint name="jointfixj_ankle1_l" type="revolute">
+  <joint name="j_ankle1_l" type="revolute">
     <parent link="MP_TIBIA_L"/>
     <child link="MP_ANKLE1_L"/>
     <origin xyz="-0.093 0 0" rpy="3.14159 0 0" />
@@ -919,7 +919,7 @@
     <limit effort="10" velocity="5.6548668" lower="-0.26179939" upper=".26179939" />
   </joint>
 
-  <joint name="jointfixj_ankle2_l" type="revolute">
+  <joint name="j_ankle2_l" type="revolute">
     <parent link="MP_ANKLE1_L"/>
     <child link="MP_ANKLE2_L"/>
     <origin xyz="0 0 0" rpy="-1.5707963 0 0" />
@@ -959,7 +959,7 @@
     <limit effort="10" velocity="5.6548668" lower="-0.06179939" upper="1.8879939" />
   </joint>
 
-  <joint name="jointfixj_ankle1_r" type="revolute">
+  <joint name="j_ankle1_r" type="revolute">
     <parent link="MP_TIBIA_R"/>
     <child link="MP_ANKLE1_R"/>
     <origin xyz="0.093 0 0" rpy="3.14159 0 0" />
@@ -967,7 +967,7 @@
     <limit effort="10" velocity="5.6548668" lower="-0.26179939" upper="0.26179939" />
   </joint>
 
-  <joint name="jointfixj_ankle2_r" type="revolute">
+  <joint name="j_ankle2_r" type="revolute">
     <parent link="MP_ANKLE1_R"/>
     <child link="MP_ANKLE2_R"/>
     <origin xyz="0 0 0" rpy="-1.5707963 0 0" />
