@@ -771,10 +771,10 @@ class Humanoid(WalkerBase):
     self.motor_power = [100, 100, 100]
     self.motor_names += ["j_shoulder_r", "j_high_arm_r", "j_low_arm_r"]
     self.motor_power += [100, 100, 100]
-    self.motor_names += ["j_pelvis_l", "j_thigh1_l", "j_thigh2_l", "j_tibia_l"]#,"j_ankle1_l","j_ankle2_l"]
-    self.motor_power += [100, 100, 100, 100]#, 100, 100]
-    self.motor_names +=["j_pelvis_r", "j_thigh1_r", "j_thigh2_r", "j_tibia_r"]#,"j_ankle1_r","j_ankle2_r"]
-    self.motor_power += [100, 100, 100,100]#, 100,100]
+    self.motor_names += ["j_pelvis_l", "j_thigh1_l", "j_thigh2_l", "j_tibia_l","j_ankle1_l","j_ankle2_l"]
+    self.motor_power += [100, 100, 100, 100, 100, 100]
+    self.motor_names +=["j_pelvis_r", "j_thigh1_r", "j_thigh2_r", "j_tibia_r","j_ankle1_r","j_ankle2_r"]
+    self.motor_power += [100, 100, 100,100, 100,100]
     
     
     self.motors = [self.jdict[n] for n in self.motor_names]
@@ -828,7 +828,7 @@ class Humanoid(WalkerBase):
       
 
   def alive_bonus(self, z, pitch):
-    return +4 if z > 0.2 else -1  # 2 here because 17 joints produce a lot of electricity cost just from policy noise, living must be better than dying
+    return +2 if z > 0.2 else -1  # 2 here because 17 joints produce a lot of electricity cost just from policy noise, living must be better than dying
 
 
 def get_cube(_p, x, y, z):
@@ -923,7 +923,7 @@ class WalkerBaseBulletEnv(URDFBulletEnv):
 
     potential_old = self.potential
     self.potential = self.robot.calc_potential()
-    progress = 25*float(self.potential - potential_old)
+    progress = 2.6*float(self.potential - potential_old)
 
     feet_collision_cost = 0.0
     
