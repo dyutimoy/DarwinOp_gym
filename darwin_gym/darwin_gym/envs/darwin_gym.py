@@ -828,7 +828,7 @@ class Humanoid(WalkerBase):
       
 
   def alive_bonus(self, z, pitch):
-    return +4 if z > 0.2 else -1  # 2 here because 17 joints produce a lot of electricity cost just from policy noise, living must be better than dying
+    return +2 if z > 0.2 else -1  # 2 here because 17 joints produce a lot of electricity cost just from policy noise, living must be better than dying
 
 
 def get_cube(_p, x, y, z):
@@ -923,7 +923,7 @@ class WalkerBaseBulletEnv(URDFBulletEnv):
 
     potential_old = self.potential
     self.potential = self.robot.calc_potential()
-    progress = 25*float(self.potential - potential_old)
+    progress = 2.6*float(self.potential - potential_old)
 
     feet_collision_cost = 0.0
     
