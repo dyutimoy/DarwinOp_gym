@@ -923,7 +923,7 @@ class WalkerBaseBulletEnv(URDFBulletEnv):
 
     potential_old = self.potential
     self.potential = self.robot.calc_potential()
-    progress = 2.6*float(self.potential - potential_old)
+    progress = 6.2*float(self.potential - potential_old)
 
     feet_collision_cost = 0.0
     
