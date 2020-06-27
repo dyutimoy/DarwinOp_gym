@@ -16,7 +16,7 @@
       <origin xyz="0 0 0" rpy="0 0 0" />
       <geometry>
         <!--box size="0.102 0.109 0.106" /-->
-        <mesh filename="/content/DarwinOp_gym/darwin_gym/darwin_gym/envs/meshes/body.STL"  scale="1 1 1"/>
+        <mesh filename="/home/akash/Documents/RLcontrol/DarwinOp_gym/darwin_gym/darwin_gym/envs/meshes/body.STL"  scale="1 1 1"/>
       </geometry>
       <material name="Grey">
         <color rgba="0.20 0.20 0.20 1.0"/>
@@ -24,7 +24,7 @@
     </visual>
     <collision>
       <geometry>
-        <mesh filename="/content/DarwinOp_gym/darwin_gym/darwin_gym/envs/meshes/body_coll.stl"  scale="1 1 1"/>
+        <mesh filename="/home/akash/Documents/RLcontrol/DarwinOp_gym/darwin_gym/darwin_gym/envs/meshes/body_coll.stl"  scale="1 1 1"/>
       </geometry>
     </collision>
   </link>
@@ -39,7 +39,7 @@
       <origin xyz="0 0 0" rpy="0 0 0" />
       <geometry>
         <!--box size="0.045 0.022 0.0325" /-->
-        <mesh filename="/content/DarwinOp_gym/darwin_gym/darwin_gym/envs/meshes/neck.STL"  scale="1 1 1"/>
+        <mesh filename="/home/akash/Documents/RLcontrol/DarwinOp_gym/darwin_gym/darwin_gym/envs/meshes/neck.STL"  scale="1 1 1"/>
       </geometry>
       <material name="Grey">
         <color rgba="0.20 0.20 0.20 1.0"/>
@@ -47,7 +47,7 @@
     </visual>
     <collision>
       <geometry>
-        <mesh filename="/content/DarwinOp_gym/darwin_gym/darwin_gym/envs/meshes/neck_coll.stl"  scale="1 1 1"/>
+        <mesh filename="/home/akash/Documents/RLcontrol/DarwinOp_gym/darwin_gym/darwin_gym/envs/meshes/neck_coll.stl"  scale="1 1 1"/>
       </geometry>
     </collision>
   </link>
@@ -62,7 +62,7 @@
       <origin xyz="0 0 0" rpy="0 0 0" />
       <geometry>
         <!-- box size="0.0634 0.061 0.033" /-->
-        <mesh filename="/content/DarwinOp_gym/darwin_gym/darwin_gym/envs/meshes/head.STL"  scale="1 1 1"/>
+        <mesh filename="/home/akash/Documents/RLcontrol/DarwinOp_gym/darwin_gym/darwin_gym/envs/meshes/head.STL"  scale="1 1 1"/>
       </geometry>
       <material name="Grey">
         <color rgba="0.20 0.20 0.20 1.0"/>
@@ -70,7 +70,7 @@
     </visual>
     <collision>
       <geometry>
-        <mesh filename="/content/DarwinOp_gym/darwin_gym/darwin_gym/envs/meshes/head_coll.stl"  scale="1 1 1"/>
+        <mesh filename="/home/akash/Documents/RLcontrol/DarwinOp_gym/darwin_gym/darwin_gym/envs/meshes/head_coll.stl"  scale="1 1 1"/>
       </geometry>
     </collision>
   </link>
@@ -109,7 +109,7 @@
       <origin xyz="0 0 0" rpy="0 0 0" />
       <geometry>
         <!--box size="0.016 0.033 0.02165" /-->
-        <mesh filename="/content/DarwinOp_gym/darwin_gym/darwin_gym/envs/meshes/shoulder_l.STL"  scale="1 1 1"/>
+        <mesh filename="/home/akash/Documents/RLcontrol/DarwinOp_gym/darwin_gym/darwin_gym/envs/meshes/shoulder_l.STL"  scale="1 1 1"/>
       </geometry>
       <material name="Grey">
         <color rgba="0.20 0.20 0.20 1.0"/>
@@ -117,7 +117,7 @@
     </visual>
     <collision>
       <geometry>
-        <mesh filename="/content/DarwinOp_gym/darwin_gym/darwin_gym/envs/meshes/shoulder_l_coll.stl"  scale="1 1 1"/>
+        <mesh filename="/home/akash/Documents/RLcontrol/DarwinOp_gym/darwin_gym/darwin_gym/envs/meshes/shoulder_l_coll.stl"  scale="1 1 1"/>
       </geometry>
     </collision>
   </link>
@@ -132,7 +132,7 @@
       <origin xyz="0 0 0" rpy="0 0 0" />
       <geometry>
         <!--box size="0.06 0.032 0.035" /-->
-        <mesh filename="/content/DarwinOp_gym/darwin_gym/darwin_gym/envs/meshes/arm_high_l.STL"  scale="1 1 1"/>
+        <mesh filename="/home/akash/Documents/RLcontrol/DarwinOp_gym/darwin_gym/darwin_gym/envs/meshes/arm_high_l.STL"  scale="1 1 1"/>
       </geometry>
       <material name="Grey">
         <color rgba="0.20 0.20 0.20 1.0"/>
@@ -140,7 +140,7 @@
     </visual>
     <collision>
       <geometry>
-        <mesh filename="/content/DarwinOp_gym/darwin_gym/darwin_gym/envs/meshes/arm_high_l_coll.stl"  scale="1 1 1"/>
+        <mesh filename="/home/akash/Documents/RLcontrol/DarwinOp_gym/darwin_gym/darwin_gym/envs/meshes/arm_high_l_coll.stl"  scale="1 1 1"/>
       </geometry>
     </collision>
   </link>
@@ -290,7 +290,7 @@
       <origin xyz="0 0 0" rpy="0 0 3.14" />
       <geometry>
         <!--box size="0.016 0.033 0.02165" /-->
-        <mesh filename="/content/DarwinOp_gym/darwin_gym/darwin_gym/envs/meshes/shoulder_r.STL"  scale="1 1 1"/>
+        <mesh filename="/home/akash/Documents/RLcontrol/DarwinOp_gym/darwin_gym/darwin_gym/envs/meshes/shoulder_r.STL"  scale="1 1 1"/>
       </geometry>
       <material name="Grey">
         <color rgba="0.20 0.20 0.20 1.0"/>
@@ -299,7 +299,7 @@
     <collision>
       <origin xyz="0 0 0" rpy="0 0 3.14" />
       <geometry>
-        <mesh filename="/content/DarwinOp_gym/darwin_gym/darwin_gym/envs/meshes/shoulder_r_coll.stl"  scale="1 1 1"/>
+        <mesh filename="/home/akash/Documents/RLcontrol/DarwinOp_gym/darwin_gym/darwin_gym/envs/meshes/shoulder_r_coll.stl"  scale="1 1 1"/>
       </geometry>
     </collision>
   </link>
@@ -314,7 +314,7 @@
       <origin xyz="0 0 0" rpy="3.14 0 0" />
       <geometry>
         <!--box size="0.06 0.032 0.035"/-->
-        <mesh filename="/content/DarwinOp_gym/darwin_gym/darwin_gym/envs/meshes/arm_high_r.STL"  scale="1 1 1"/>
+        <mesh filename="/home/akash/Documents/RLcontrol/DarwinOp_gym/darwin_gym/darwin_gym/envs/meshes/arm_high_r.STL"  scale="1 1 1"/>
       </geometry>
       <material name="Grey">
         <color rgba="0.20 0.20 0.20 1.0"/>
@@ -322,7 +322,7 @@
     </visual>
     <collision>
       <geometry>
-        <mesh filename="/content/DarwinOp_gym/darwin_gym/darwin_gym/envs/meshes/arm_high_r_coll.stl"  scale="1 1 1"/>
+        <mesh filename="/home/akash/Documents/RLcontrol/DarwinOp_gym/darwin_gym/darwin_gym/envs/meshes/arm_high_r_coll.stl"  scale="1 1 1"/>
       </geometry>
     </collision>
   </link>
@@ -447,7 +447,7 @@
       <origin xyz="0 0 0" rpy="0 0 0" />
       <geometry>
         <!--box size="0.045 0.08175 0.028652" /-->
-        <mesh filename="/content/DarwinOp_gym/darwin_gym/darwin_gym/envs/meshes/pelvis_l.STL"  scale="1 1 1"/>
+        <mesh filename="/home/akash/Documents/RLcontrol/DarwinOp_gym/darwin_gym/darwin_gym/envs/meshes/pelvis_l.STL"  scale="1 1 1"/>
       </geometry>
       <material name="Grey">
         <color rgba="0.20 0.20 0.20 1.0"/>
@@ -455,7 +455,7 @@
     </visual>
     <collision>
       <geometry>
-        <mesh filename="/content/DarwinOp_gym/darwin_gym/darwin_gym/envs/meshes/pelvis_l_coll.stl"  scale="1 1 1"/>
+        <mesh filename="/home/akash/Documents/RLcontrol/DarwinOp_gym/darwin_gym/darwin_gym/envs/meshes/pelvis_l_coll.stl"  scale="1 1 1"/>
       </geometry>
     </collision>
   </link>
@@ -470,7 +470,7 @@
       <origin xyz="0 0 0" rpy="0 0 0" />
       <geometry>
         <!--box size="0.001 0.001 0.001"/-->
-        <mesh filename="/content/DarwinOp_gym/darwin_gym/darwin_gym/envs/meshes/thigh1_l.STL"  scale="1 1 1"/>
+        <mesh filename="/home/akash/Documents/RLcontrol/DarwinOp_gym/darwin_gym/darwin_gym/envs/meshes/thigh1_l.STL"  scale="1 1 1"/>
       </geometry>
       <material name="Grey">
         <color rgba="0.20 0.20 0.20 1.0"/>
@@ -478,7 +478,7 @@
     </visual>
     <collision>
       <geometry>
-        <mesh filename="/content/DarwinOp_gym/darwin_gym/darwin_gym/envs/meshes/thigh1_l_coll.stl"  scale="1 1 1"/>
+        <mesh filename="/home/akash/Documents/RLcontrol/DarwinOp_gym/darwin_gym/darwin_gym/envs/meshes/thigh1_l_coll.stl"  scale="1 1 1"/>
       </geometry>
     </collision>
   </link>
@@ -493,7 +493,7 @@
       <origin xyz="0 0 0" rpy="0 0 0" />
       <geometry>
         <!--box size="0.093 0.035 0.045"-->
-        <mesh filename="/content/DarwinOp_gym/darwin_gym/darwin_gym/envs/meshes/thigh2_l.STL"  scale="1 1 1"/>
+        <mesh filename="/home/akash/Documents/RLcontrol/DarwinOp_gym/darwin_gym/darwin_gym/envs/meshes/thigh2_l.STL"  scale="1 1 1"/>
       </geometry>
       <material name="Grey">
         <color rgba="0.20 0.20 0.20 1.0"/>
@@ -501,7 +501,7 @@
     </visual>
     <collision>
       <geometry>
-        <mesh filename="/content/DarwinOp_gym/darwin_gym/darwin_gym/envs/meshes/thigh2_l_coll.stl"  scale="1 1 1"/>
+        <mesh filename="/home/akash/Documents/RLcontrol/DarwinOp_gym/darwin_gym/darwin_gym/envs/meshes/thigh2_l_coll.stl"  scale="1 1 1"/>
       </geometry>
     </collision>
   </link>
@@ -516,7 +516,7 @@
       <origin xyz="0 0 0" rpy="0 0 0" />
       <geometry>
         <!--box size="0.093 0.035 0.045"/-->
-        <mesh filename="/content/DarwinOp_gym/darwin_gym/darwin_gym/envs/meshes/tibia_l.STL"  scale="1 1 1"/>
+        <mesh filename="/home/akash/Documents/RLcontrol/DarwinOp_gym/darwin_gym/darwin_gym/envs/meshes/tibia_l.STL"  scale="1 1 1"/>
       </geometry>
       <material name="Grey">
         <color rgba="0.20 0.20 0.20 1.0"/>
@@ -524,7 +524,7 @@
     </visual>
     <collision>
       <geometry>
-        <mesh filename="/content/DarwinOp_gym/darwin_gym/darwin_gym/envs/meshes/tibia_l_coll.stl"  scale="1 1 1"/>
+        <mesh filename="/home/akash/Documents/RLcontrol/DarwinOp_gym/darwin_gym/darwin_gym/envs/meshes/tibia_l_coll.stl"  scale="1 1 1"/>
       </geometry>
     </collision>
   </link>
@@ -539,7 +539,7 @@
       <origin xyz="0 0 0" rpy="0 0 0" />
       <geometry>
         <!--box size="0.028652 0.08175 0.045"/-->
-        <mesh filename="/content/DarwinOp_gym/darwin_gym/darwin_gym/envs/meshes/ankle1_l.STL"  scale="1 1 1"/>
+        <mesh filename="/home/akash/Documents/RLcontrol/DarwinOp_gym/darwin_gym/darwin_gym/envs/meshes/ankle1_l.STL"  scale="1 1 1"/>
       </geometry>
       <material name="Grey">
         <color rgba="0.20 0.20 0.20 1.0"/>
@@ -547,7 +547,7 @@
     </visual>
     <collision>
       <geometry>
-        <mesh filename="/content/DarwinOp_gym/darwin_gym/darwin_gym/envs/meshes/ankle1_l_coll.stl"  scale="1 1 1"/>
+        <mesh filename="/home/akash/Documents/RLcontrol/DarwinOp_gym/darwin_gym/darwin_gym/envs/meshes/ankle1_l_coll.stl"  scale="1 1 1"/>
       </geometry>
     </collision>
   </link>
@@ -568,7 +568,7 @@
       <origin xyz="0 0 0" rpy="0 0 0" />
       <geometry>
         <!--box size="0.008 0.066 0.104"/-->
-        <mesh filename="/content/DarwinOp_gym/darwin_gym/darwin_gym/envs/meshes/ankle2_l.STL"  scale="1 1 1"/>
+        <mesh filename="/home/akash/Documents/RLcontrol/DarwinOp_gym/darwin_gym/darwin_gym/envs/meshes/ankle2_l.STL"  scale="1 1 1"/>
       </geometry>
       <material name="Grey">
         <color rgba="0.20 0.20 0.20 1.0"/>
@@ -576,7 +576,7 @@
     </visual>
     <collision>
       <geometry>
-        <mesh filename="/content/DarwinOp_gym/darwin_gym/darwin_gym/envs/meshes/ankle2_l_coll.stl"  scale="1 1 1"/>
+        <mesh filename="/home/akash/Documents/RLcontrol/DarwinOp_gym/darwin_gym/darwin_gym/envs/meshes/ankle2_l_coll.stl"  scale="1 1 1"/>
       </geometry>
     </collision>
   </link>
@@ -591,7 +591,7 @@
       <origin xyz="0 0 0" rpy="0 0 0" />
       <geometry>
         <!--box size="0.045 0.08175 0.028652" /-->
-        <mesh filename="/content/DarwinOp_gym/darwin_gym/darwin_gym/envs/meshes/pelvis_r.STL"  scale="1 1 1"/>
+        <mesh filename="/home/akash/Documents/RLcontrol/DarwinOp_gym/darwin_gym/darwin_gym/envs/meshes/pelvis_r.STL"  scale="1 1 1"/>
       </geometry>
       <material name="Grey">
         <color rgba="0.20 0.20 0.20 1.0"/>
@@ -599,7 +599,7 @@
     </visual>
     <collision>
       <geometry>
-        <mesh filename="/content/DarwinOp_gym/darwin_gym/darwin_gym/envs/meshes/pelvis_r_coll.stl"  scale="1 1 1"/>
+        <mesh filename="/home/akash/Documents/RLcontrol/DarwinOp_gym/darwin_gym/darwin_gym/envs/meshes/pelvis_r_coll.stl"  scale="1 1 1"/>
       </geometry>
     </collision>
   </link>
@@ -614,7 +614,7 @@
       <origin xyz="0 0 0" rpy="0 0 0" />
       <geometry>
         <!--box size="0.001 0.001 0.001"/-->
-        <mesh filename="/content/DarwinOp_gym/darwin_gym/darwin_gym/envs/meshes/thigh1_r.STL"  scale="1 1 1"/>
+        <mesh filename="/home/akash/Documents/RLcontrol/DarwinOp_gym/darwin_gym/darwin_gym/envs/meshes/thigh1_r.STL"  scale="1 1 1"/>
       </geometry>
       <material name="Grey">
         <color rgba="0.20 0.20 0.20 1.0"/>
@@ -622,7 +622,7 @@
     </visual>
     <collision>
       <geometry>
-        <mesh filename="/content/DarwinOp_gym/darwin_gym/darwin_gym/envs/meshes/thigh1_r_coll.stl"  scale="1 1 1"/>
+        <mesh filename="/home/akash/Documents/RLcontrol/DarwinOp_gym/darwin_gym/darwin_gym/envs/meshes/thigh1_r_coll.stl"  scale="1 1 1"/>
       </geometry>
     </collision>
 
@@ -638,7 +638,7 @@
       <origin xyz="0 0 0" rpy="0 0 0" />
       <geometry>
         <!--box size="0.093 0.035 0.045"/-->
-        <mesh filename="/content/DarwinOp_gym/darwin_gym/darwin_gym/envs/meshes/thigh2_r.STL"  scale="1 1 1"/>
+        <mesh filename="/home/akash/Documents/RLcontrol/DarwinOp_gym/darwin_gym/darwin_gym/envs/meshes/thigh2_r.STL"  scale="1 1 1"/>
       </geometry>
       <material name="Grey">
         <color rgba="0.20 0.20 0.20 1.0"/>
@@ -646,7 +646,7 @@
     </visual>
     <collision>
       <geometry>
-        <mesh filename="/content/DarwinOp_gym/darwin_gym/darwin_gym/envs/meshes/thigh2_r_coll.stl"  scale="1 1 1"/>
+        <mesh filename="/home/akash/Documents/RLcontrol/DarwinOp_gym/darwin_gym/darwin_gym/envs/meshes/thigh2_r_coll.stl"  scale="1 1 1"/>
       </geometry>
     </collision>
 
@@ -662,7 +662,7 @@
       <origin xyz="0 0 0" rpy="0 0 0" />
       <geometry>
         <!--box size="0.093 0.035 0.045"/-->
-        <mesh filename="/content/DarwinOp_gym/darwin_gym/darwin_gym/envs/meshes/tibia_r.STL"  scale="1 1 1"/>
+        <mesh filename="/home/akash/Documents/RLcontrol/DarwinOp_gym/darwin_gym/darwin_gym/envs/meshes/tibia_r.STL"  scale="1 1 1"/>
       </geometry>
       <material name="Grey">
         <color rgba="0.20 0.20 0.20 1.0"/>
@@ -670,7 +670,7 @@
     </visual>
     <collision>
       <geometry>
-        <mesh filename="/content/DarwinOp_gym/darwin_gym/darwin_gym/envs/meshes/tibia_r_coll.stl"  scale="1 1 1"/>
+        <mesh filename="/home/akash/Documents/RLcontrol/DarwinOp_gym/darwin_gym/darwin_gym/envs/meshes/tibia_r_coll.stl"  scale="1 1 1"/>
       </geometry>
     </collision>
 
@@ -686,7 +686,7 @@
       <origin xyz="0 0 0" rpy="0 0 0" />
       <geometry>
         <!--box size="0.028652 0.08175 0.045"/-->
-        <mesh filename="/content/DarwinOp_gym/darwin_gym/darwin_gym/envs/meshes/ankle1_r.STL"  scale="1 1 1"/>
+        <mesh filename="/home/akash/Documents/RLcontrol/DarwinOp_gym/darwin_gym/darwin_gym/envs/meshes/ankle1_r.STL"  scale="1 1 1"/>
       </geometry>
       <material name="Grey">
         <color rgba="0.20 0.20 0.20 1.0"/>
@@ -694,7 +694,7 @@
     </visual>
     <collision>
       <geometry>
-        <mesh filename="/content/DarwinOp_gym/darwin_gym/darwin_gym/envs/meshes/ankle1_r_coll.stl"  scale="1 1 1"/>
+        <mesh filename="/home/akash/Documents/RLcontrol/DarwinOp_gym/darwin_gym/darwin_gym/envs/meshes/ankle1_r_coll.stl"  scale="1 1 1"/>
       </geometry>
     </collision>
 
@@ -716,7 +716,7 @@
       <origin xyz="0 0 0" rpy="0 0 0" />
       <geometry>
         <!--box size="0.008 0.066 0.104"/-->
-        <mesh filename="/content/DarwinOp_gym/darwin_gym/darwin_gym/envs/meshes/ankle2_r.STL"  scale="1 1 1"/>
+        <mesh filename="/home/akash/Documents/RLcontrol/DarwinOp_gym/darwin_gym/darwin_gym/envs/meshes/ankle2_r.STL"  scale="1 1 1"/>
       </geometry>
       <material name="Grey">
         <color rgba="0.20 0.20 0.20 1.0"/>
@@ -724,7 +724,7 @@
     </visual>
     <collision>
       <geometry>
-        <mesh filename="/content/DarwinOp_gym/darwin_gym/darwin_gym/envs/meshes/ankle2_r_coll.stl"  scale="1 1 1"/>
+        <mesh filename="/home/akash/Documents/RLcontrol/DarwinOp_gym/darwin_gym/darwin_gym/envs/meshes/ankle2_r_coll.stl"  scale="1 1 1"/>
       </geometry>
     </collision>
 

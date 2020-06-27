@@ -758,7 +758,7 @@ class Humanoid(WalkerBase):
 
   def __init__(self):
     WalkerBase.__init__(self,
-                        "/content/DarwinOp_gym/darwin_gym/darwin_gym/envs/darwin4.urdf",
+                        "/home/akash/Documents/RLcontrol/DarwinOp_gym/darwin_gym/darwin_gym/envs/darwin4.urdf",
                         'MP_BODY',
                         action_dim=14,
                         obs_dim=38,
@@ -916,6 +916,7 @@ class WalkerBaseBulletEnv(URDFBulletEnv):
         self.robot.alive_bonus(
             state[0] + self.robot.initial_z,
             self.robot.body_rpy[1]))  # state[0] is body height above ground, body_rpy[1] is pitch
+    print("pitch",self.robot.body_rpy[1])
     done = self._isDone()
     if not np.isfinite(state).all():
       print("~INF~", state)
@@ -952,7 +953,7 @@ class WalkerBaseBulletEnv(URDFBulletEnv):
     electricity_cost += self.stall_torque_cost * float(np.square(a).mean())
 
     joints_at_limit_cost = float(self.joints_at_limit_cost * self.robot.joints_at_limit)
-    debugmode = 0
+    debugmode = 1
     if (debugmode):
       print("alive=")
       print(self._alive)
