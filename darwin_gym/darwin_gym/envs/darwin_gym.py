@@ -827,8 +827,8 @@ class Humanoid(WalkerBase):
         print("position",m.get_position(),np.clip(m.get_position()+self.power*np.clip(a[i], -1, +1),m.lowerLimit,m.upperLimit))
       
 
-  def alive_bonus(self, z, pitch):
-    return +2 if z > 0.2 else -1  # 2 here because 17 joints produce a lot of electricity cost just from policy noise, living must be better than dying
+  def alive_bonus(self, z, pitch,yaw):
+    return +2 if z > 0.26 and abs(pitch)<0.5 and abs(yaw)<.7 else -1  # 2 here because 17 joints produce a lot of electricity cost just from policy noise, living must be better than dying
 
 
 def get_cube(_p, x, y, z):
@@ -915,7 +915,7 @@ class WalkerBaseBulletEnv(URDFBulletEnv):
     self._alive = float(
         self.robot.alive_bonus(
             state[0] + self.robot.initial_z,
-            self.robot.body_rpy[1]))  # state[0] is body height above ground, body_rpy[1] is pitch
+            self.robot.body_rpy[1],self.robot.body_rpy[2]))  # state[0] is body height above ground, body_rpy[1] is pitch
     done = self._isDone()
     if not np.isfinite(state).all():
       print("~INF~", state)
